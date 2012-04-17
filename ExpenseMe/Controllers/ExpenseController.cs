@@ -8,7 +8,7 @@ using ExpenseMe.Models;
 using ExpenseMe.Domain;
 
 namespace ExpenseMe.Controllers {
-    [Authorize]
+
     public class ExpenseController : Controller {
 
         public static void RegisterRoutes(RouteCollection routes) {
