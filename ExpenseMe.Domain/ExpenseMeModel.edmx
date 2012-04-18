@@ -67,7 +67,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="ExpenseMeModel" >
+      <Diagram Name="ExpenseMeModel" ZoomLevel="89" >
         <EntityTypeShape EntityType="ExpenseMeModel.Expense" Width="1.5" PointX="2" PointY="1.125" Height="1.787985026041667" />
       </Diagram>
     </edmx:Diagrams>

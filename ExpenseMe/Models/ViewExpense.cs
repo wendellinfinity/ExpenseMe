@@ -9,5 +9,6 @@ namespace ExpenseMe.Models {
         public string Description { get; set; }
         public DateTime ExpenseDate { get; set; }
         public double Spent { get; set; }
+        public string FormattedExpenseDate { get; set; }
     }
 }

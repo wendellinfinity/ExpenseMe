@@ -165,6 +165,9 @@ MAIN NAVIGATION
 	float: left;
 	position: relative;
 }
+#main-nav .onlinestatus {
+    float:right;
+}
 #main-nav li:first-child {
 	margin-left: 10px;
 }
@@ -185,14 +188,19 @@ MAIN NAVIGATION
 	background: -moz-linear-gradient(top,  #282828,  #4f4f4f);
 	background: linear-gradient(-90deg, #282828, #4f4f4f);
 }
-#main-nav span {
+#main-nav .status {
 	line-height: 100%;
 	font-weight: bold;
-	color: #ccc;
 	display: block;
 	padding: 14px 15px;
 	text-decoration: none;
 	text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+}
+#main-nav .green {
+	color: #0f0;
+}
+#main-nav .red {
+	color: #d00;
 }
 
 /************************************************************************************
@@ -207,7 +215,7 @@ CONTENT
 	/* rounded corner */
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
-	border-radius: 8px;
+	border-radius: w;
 	/* box shadow */
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.4);
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0,.4);
@@ -231,6 +239,10 @@ CONTENT
 .expenselist h3 {
     font-size: 14px;
     color: #555;
+}
+
+#expenses_myexpenses li span {
+    /*margin: 0px 5px 0px 5px;*/
 }
 
 /************************************************************************************
@@ -268,6 +280,47 @@ SIDEBAR
 	list-style: none;
 	clear: both;
 	border-top: solid 1px #eee;
+}
+.widget li .label {
+    width:50%;
+}
+.widget li input {
+    width:100%;
+}
+
+
+#addexpense {
+	font-weight: bold;
+	color: #fff;
+	display: block;
+	padding: 5px;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+	text-align:center;
+	width:90%;
+}
+
+#addexpensecontainer {
+    cursor:pointer;
+	width: 100%;
+	background: #ccc;
+	margin: 0;
+	padding: 0;
+	height:30px;
+	z-index: 100;
+	/* gradient - all of these do the same but for each browser */
+	background: #6a6a6a url(/images/nav-bar-bg.png) repeat-x;
+	background: -webkit-gradient(linear, left top, left bottom, from(#b9b9b9), to(#6a6a6a));
+	background: -moz-linear-gradient(top,  #b9b9b9,  #6a6a6a);
+	background: linear-gradient(-90deg, #b9b9b9, #6a6a6a);
+	/* rounded corner */
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	/* box shadow */
+	-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 1px rgba(0,0,0,.4);
+	-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 1px rgba(0,0,0,.4);
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 1px rgba(0,0,0,.4);
 }
 
 /************************************************************************************
