@@ -1,4 +1,5 @@
-﻿
+﻿var server = localStorage.server == null ? "" : localStorage.server ;
+
 $(function () {
     $("#addexpense").click(function () {
         if (online) {
@@ -7,8 +8,18 @@ $(function () {
             PushExpenseOffline($("#expense_description").val(), $("#expense_spent").val());
         }
     });
-    UpdateMyExpenseList();
-    UpdateListOffline();
+    if ($("#settings_server").length > 0) {
+        server = localStorage.server;
+        $("#settings_server").change(function () {
+            server = $(this).val();
+            localStorage.server = server;
+        });
+        $("#settings_server").val(server);
+    }
+    if ($("#addexpense").length > 0) {
+        UpdateMyExpenseList();
+        UpdateListOffline();
+    }
 });
 
 var online=false;
@@ -52,7 +63,7 @@ function PushExpense(expenseid, description, spent) {
     //expense = "{ 'expense':'" + expense + "', 'description':'" + description + "', 'spent':'" + spent + "'}";
     expense = { ExpenseId: expenseid, Description: description, ExpenseDate: new Date(), Spent: parseFloat(spent) };
     $.ajax({
-        url: '/Expense/Create',
+        url: server + '/Expense/Create',
         type: 'POST',
         data: JSON.stringify(expense),
         dataType: 'json',
@@ -75,7 +86,7 @@ function PushExpenseBatch() {
     var expenses = jQuery.parseJSON(localStorage.expenses);
     if (expenses.length > 0) {
         $.ajax({
-            url: '/Expense/CreateBatch',
+            url: server + '/Expense/CreateBatch',
             type: 'POST',
             data: JSON.stringify(expenses),
             dataType: 'json',
@@ -96,7 +107,7 @@ function PushExpenseBatch() {
 
 function UpdateMyExpenseList() {
     $.ajax({
-        url: '/Expense/Index',
+        url: server + '/Expense/Index',
         type: 'GET',
         dataType: 'json',
         contentType: 'application/json; charset=utf-8',
