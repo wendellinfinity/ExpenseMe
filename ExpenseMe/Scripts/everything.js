@@ -16,10 +16,8 @@ $(function () {
         });
         $("#settings_server").val(server);
     }
-    if ($("#addexpense").length > 0) {
-        UpdateMyExpenseList();
-        UpdateListOffline();
-    }
+    UpdateMyExpenseList();
+    UpdateListOffline();
 });
 
 var online=false;
@@ -39,8 +37,8 @@ function PushExpenseOffline(description, spent) {
     if (!localStorage.expenses) {
         localStorage.expenses = JSON.stringify([]);
     }
-    // jQuery.parseJSON(JSON.stringify(hey))
-    var expenses = jQuery.parseJSON(localStorage.expenses);
+    // JSON.parse(JSON.stringify(hey))
+    var expenses = JSON.parse(localStorage.expenses);
     var now = new Date();
     var nowstring = now.getMonth() + "/" + now.getDay() + "/" + now.getYear() + " " + now.getHours() + ":" + now.getMinutes();
     expenses.push({ Description: description, ExpenseDate: now, FormattedExpenseDate: nowstring, Spent: spent });
@@ -53,7 +51,7 @@ function UpdateListOffline() {
     if (!localStorage.expenses) {
         localStorage.expenses = JSON.stringify([]);
     }
-    var expenses = jQuery.parseJSON(localStorage.expenses);
+    var expenses = JSON.parse(localStorage.expenses);
     var myoffline = $("#expenses_offline");
     UpdateListMeta(expenses, myoffline);
 }
@@ -83,7 +81,7 @@ function PushExpenseBatch() {
     if (!localStorage.expenses) {
         localStorage.expenses = JSON.stringify([]);
     }
-    var expenses = jQuery.parseJSON(localStorage.expenses);
+    var expenses = JSON.parse(localStorage.expenses);
     if (expenses.length > 0) {
         $.ajax({
             url: server + '/Expense/CreateBatch',
@@ -106,19 +104,21 @@ function PushExpenseBatch() {
 }
 
 function UpdateMyExpenseList() {
-    $.ajax({
-        url: server + '/Expense/Index',
-        type: 'GET',
-        dataType: 'json',
-        contentType: 'application/json; charset=utf-8',
-        success: function (data) {
-            var myexpenses = $("#expenses_myexpenses");
-            UpdateListMeta(data, myexpenses);
-        },
-        error: function (data) {
-            alert("Oops! Can't do this now");
-        }
-    });
+    if (navigator.onLine) {
+        $.ajax({
+            url: server + '/Expense/Index',
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                var myexpenses = $("#expenses_myexpenses");
+                UpdateListMeta(data, myexpenses);
+            },
+            error: function (data) {
+                alert("Oops! Can't do this now");
+            }
+        });
+    }
 }
 
 function UpdateListMeta(data,list) {

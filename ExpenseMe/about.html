@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html manifest="site.appmanifest">
+<head>
+    <meta charset="utf-8" />
+    <title>Expenses Tracker</title>
+    
+    <!-- disable iPhone inital scale -->
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+    <script src="/Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="/Scripts/modernizr-1.7.min.js" type="text/javascript"></script>
+
+    <script src="/Scripts/everything.js" type="text/javascript"></script>
+
+    <link href="/Content/style.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/media-queries.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="pagewrap">
+        <header id="header">
+            <div>
+                <h1>Rawr!</h1>
+            </div>
+            <nav>
+                <ul id="main-nav" class="clearfix">
+                    <li><a href="default.html">My Expenses</a></li>
+                    <li><a href="about.html">Settings</a></li>
+                    <li class="onlinestatus"><span id="app_status" class="status green">You are online</span></li>
+                </ul> 
+            </nav>
+        </header>
+        <section id="content">
+            <h3>Server</h3>
+            <span>Kindly specify the server to connect to</span><br />
+            <input type="text" id="settings_server" style="width:100%" placeholder="Ex: http://190.50.80.10:8080" />
+        </section>
+        <footer id="footer">
+        </footer>
+    </div>
+</body>
+</html>
